@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { getYoutubeResult } from '../api'
-import YouTube from 'react-youtube'
+
+import Stats from './Stats'
 
 function Video () {
   const [youtubeResult, setYoutubeResult] = useState([])
   useEffect(() => {
     getYoutubeResult()
-      .then(ele => {
-        // console.log(ele)
-        return ele
-      })
       .then((resultData) => {
         console.log('result data: ', resultData)
         setYoutubeResult(resultData)
@@ -17,14 +14,17 @@ function Video () {
       })
       .catch(err => console.error(err))
   }, [])
+  // create function that finds viewcount and returns if 0
+  // find viewcount of video,
+  // use the output as const result
+  // else if, ping youtubeapi again but with different date
 
   const result = youtubeResult.map(item => item.id.videoId)
   console.log(result)
   return (
     <>
       <h1>video component</h1>
-      <YouTube
-        videoId={result}/>
+      <Stats id={result}/>
     </>
   )
 }

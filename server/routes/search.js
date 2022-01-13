@@ -15,11 +15,25 @@ router.get('/test', (req, res) => {
     part: 'snippet',
     type: 'video',
     maxResults: 1,
-    publishedAfter: stringDate,
+    // publishedAfter: stringDate,
     order: 'date'
   }).then(response => {
     res.json(response.data)
-    console.log(response.data)
+    return null
+  }).catch(err => {
+    res.status(500).json({ error: err.message })
+  })
+})
+
+router.get('/test/statistics/:id', (req, res) => {
+  const testId = req.params.id
+  console.log(testId)
+  google.youtube('v3').videos.list({
+    key: apiKey,
+    id: testId,
+    part: 'statistics'
+  }).then(response => {
+    res.json(response.data)
     return null
   }).catch(err => {
     res.status(500).json({ error: err.message })
