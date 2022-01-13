@@ -3,9 +3,13 @@ const request = require('superagent')
 require('dotenv').config()
 const router = express.Router()
 const { google } = require('googleapis')
+const moment = require('moment')
 
 const apiKey = process.env.API_KEY
 const date = new Date()
+const pastDate = moment().subtract(10, 'minute').format()
+
+console.log('10mins ago: ', pastDate)
 const stringDate = date.toISOString()
 
 // using googleapis
@@ -15,7 +19,7 @@ router.get('/test', (req, res) => {
     part: 'snippet',
     type: 'video',
     maxResults: 10,
-    // publishedAfter: stringDate,
+    publishedAfter: pastDate,
     order: 'date'
   }).then(response => {
     res.json(response.data)

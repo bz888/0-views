@@ -9,7 +9,6 @@ import Stats from './Stats'
 // else if, ping youtubeapi again but with different date
 
 function Video () {
-  const [youtubeResult, setYoutubeResult] = useState([])
   const [vidId, setVidId] = useState([])
   const [toggle, setToggle] = useState(true)
   const [index, setIndex] = useState('')
