@@ -15,7 +15,7 @@ router.get('/test', (req, res) => {
     part: 'snippet',
     type: 'video',
     maxResults: 1,
-    // publishedAfter: stringDate
+    publishedAfter: stringDate,
     order: 'date'
   }).then(response => {
     res.json(response.data)
