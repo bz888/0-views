@@ -14,7 +14,7 @@ router.get('/test', (req, res) => {
     key: apiKey,
     part: 'snippet',
     type: 'video',
-    maxResults: 1,
+    maxResults: 10,
     // publishedAfter: stringDate,
     order: 'date'
   }).then(response => {
