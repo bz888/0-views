@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { getYoutubeResult } from '../api'
+import YouTube from 'react-youtube'
 
-function Youtube () {
+function Video () {
   const [youtubeResult, setYoutubeResult] = useState([])
   useEffect(() => {
     getYoutubeResult()
@@ -17,13 +18,15 @@ function Youtube () {
       .catch(err => console.error(err))
   }, [])
 
-  const video = youtubeResult[0]
-  console.log(video)
+  const result = youtubeResult.map(item => item.id.videoId)
+  console.log(result)
   return (
     <>
-      <h1>hello</h1>
+      <h1>video component</h1>
+      <YouTube
+        videoId={result}/>
     </>
   )
 }
 
-export default Youtube
+export default Video
