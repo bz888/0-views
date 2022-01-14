@@ -6,6 +6,7 @@ const { google } = require('googleapis')
 const moment = require('moment')
 
 const apiKey = process.env.API_KEY
+const apiKey2 = process.env.API_KEY2
 // const date = new Date()
 const pastDate = moment().subtract(10, 'minute').format()
 
@@ -15,7 +16,7 @@ console.log('10mins ago: ', pastDate)
 // using googleapis
 router.get('/test', (req, res) => {
   google.youtube('v3').search.list({
-    key: apiKey,
+    key: apiKey2,
     part: 'snippet',
     type: 'video',
     maxResults: 10,
@@ -33,7 +34,7 @@ router.get('/test/statistics/:id', (req, res) => {
   const testId = req.params.id
   console.log(testId)
   google.youtube('v3').videos.list({
-    key: apiKey,
+    key: apiKey2,
     id: testId,
     part: 'statistics'
   }).then(response => {
