@@ -1,16 +1,16 @@
 const express = require('express')
-const request = require('superagent')
+// const request = require('superagent')
 require('dotenv').config()
 const router = express.Router()
 const { google } = require('googleapis')
 const moment = require('moment')
 
 const apiKey = process.env.API_KEY
-const date = new Date()
+// const date = new Date()
 const pastDate = moment().subtract(10, 'minute').format()
 
 console.log('10mins ago: ', pastDate)
-const stringDate = date.toISOString()
+// const stringDate = date.toISOString()
 
 // using googleapis
 router.get('/test', (req, res) => {
@@ -45,25 +45,25 @@ router.get('/test/statistics/:id', (req, res) => {
 })
 
 // GET /api/v1/search using superagent
-const url = {
-  baseURL: 'https://youtube.googleapis.com/youtube/v3/search?part=',
-  snippet: 'snippet',
-  maxResults: '&maxResults=1',
-  order: '&order=searchSortUnspecified',
-  publishedAfter: '&publishedAfter=' + stringDate,
-  key: '&key=' + apiKey
-}
+// const url = {
+//   baseURL: 'https://youtube.googleapis.com/youtube/v3/search?part=',
+//   snippet: 'snippet',
+//   maxResults: '&maxResults=1',
+//   order: '&order=searchSortUnspecified',
+//   publishedAfter: '&publishedAfter=' + stringDate,
+//   key: '&key=' + apiKey
+// }
 
-router.get('/', (req, res) => {
-  request.get(url.baseURL + url.snippet + url.maxResults + url.order + url.publishedAfter + url.key)
-    .then(response => {
-      res.json(response.body)
-      console.log(response.body)
-      return null
-    })
-    .catch(err => {
-      res.status(500).json({ error: err.message })
-    })
-})
+// router.get('/', (req, res) => {
+//   request.get(url.baseURL + url.snippet + url.maxResults + url.order + url.publishedAfter + url.key)
+//     .then(response => {
+//       res.json(response.body)
+//       console.log(response.body)
+//       return null
+//     })
+//     .catch(err => {
+//       res.status(500).json({ error: err.message })
+//     })
+// })
 
 module.exports = router

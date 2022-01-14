@@ -10,10 +10,13 @@ import Stats from './Stats'
 
 function Video () {
   const [vidId, setVidId] = useState([])
-  const [toggle, setToggle] = useState(true)
+  // const [toggle, setToggle] = useState(true)
   const [index, setIndex] = useState('')
 
   useEffect(() => {
+    search()
+  }, [])
+  function search () {
     getYoutubeResult()
       .then((resultData) => {
         console.log('result data: ', resultData)
@@ -37,17 +40,9 @@ function Video () {
         return null
       })
       .catch(err => console.error(err))
-  }, [toggle])
+  }
 
   console.log('outside callback vidId: ', vidId[index])
-  // function checkViews () {
-  //   if (youtubeResult >= 10000) {
-  //     console.log(vidId)
-  //     return vidId
-  //   } else {
-  //     setToggle(!true)
-  //   }
-  // }
 
   return (
     <>
