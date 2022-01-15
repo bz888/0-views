@@ -17,17 +17,18 @@ function Video () {
   useEffect(() => {
     search()
   }, [])
+
   function search () {
     getYoutubeResult()
       .then((resultData) => {
         console.log('result data: ', resultData)
         const idArray = resultData.map(item => item.id.videoId)
         console.log('idArray: ', idArray)
+        setVidId(idArray)
         return idArray
       })
       .then((id) => {
         console.log('ids', id)
-        setVidId(id)
         return getStatistics(id)
       })
       .then((data) => {

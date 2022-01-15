@@ -5,10 +5,10 @@ const router = express.Router()
 const { google } = require('googleapis')
 const moment = require('moment')
 
-const apiKey = process.env.API_KEY
+// const apiKey = process.env.API_KEY
 const apiKey2 = process.env.API_KEY2
 // const date = new Date()
-const pastDate = moment().subtract(10, 'minute').format()
+const pastDate = moment().subtract(1, 'hour').format()
 
 console.log('10mins ago: ', pastDate)
 // const stringDate = date.toISOString()
@@ -21,7 +21,8 @@ router.get('/test', (req, res) => {
     type: 'video',
     maxResults: 10,
     publishedAfter: pastDate,
-    order: 'date'
+    order: 'date',
+    videoEmbeddable: 'true'
   }).then(response => {
     res.json(response.data)
     return null
