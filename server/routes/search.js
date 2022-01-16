@@ -7,8 +7,7 @@ const moment = require('moment')
 
 // const apiKey = process.env.API_KEY
 const apiKey2 = process.env.API_KEY2
-// const date = new Date()
-const pastDate = moment().subtract(1, 'hour').format()
+const pastDate = moment().subtract(1, 'day').format()
 
 console.log('10mins ago: ', pastDate)
 // const stringDate = date.toISOString()
@@ -19,10 +18,12 @@ router.get('/test', (req, res) => {
     key: apiKey2,
     part: 'snippet',
     type: 'video',
-    maxResults: 10,
+    maxResults: 50,
     publishedAfter: pastDate,
     order: 'date',
-    videoEmbeddable: 'true'
+    videoEmbeddable: 'true',
+    videoDuration: 'short',
+    eventType: 'completed'
   }).then(response => {
     res.json(response.data)
     return null
@@ -33,7 +34,7 @@ router.get('/test', (req, res) => {
 
 router.get('/test/statistics/:id', (req, res) => {
   const testId = req.params.id
-  console.log(testId)
+  console.log('testID: ', testId)
   google.youtube('v3').videos.list({
     key: apiKey2,
     id: testId,

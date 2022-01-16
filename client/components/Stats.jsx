@@ -1,14 +1,9 @@
 import React from 'react'
 import YouTube from 'react-youtube'
 
-function Stats (props) {
-  function getNextVideo (event) {
-    console.log(event.target)
-  }
-
-  function playVideo (event) {
-    const player = event.target
-    console.log(player)
+function Stats ({ id, toggle, setToggle }) {
+  function onEnd () {
+    setToggle(!toggle)
   }
   const opts = {
     height: '390',
@@ -16,11 +11,12 @@ function Stats (props) {
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
-      controls: 0,
+      controls: 1,
       mute: 1
     }
   }
-  const vidId = props.id
+  console.log('stats id: ', id)
+  console.log('settoggle func', toggle)
 
   function handleChange () {
     console.log(1)
@@ -29,12 +25,12 @@ function Stats (props) {
   return (
 
     <>
-      <button onClick={handleChange}>interact</button>
+      <button onClick={handleChange}>interact</button>  {/* testButton */}
+
       <YouTube
-        videoId={vidId}
+        videoId={id}
         opts={opts}
-        onReady={playVideo}
-        onEnd={getNextVideo}
+        onEnd={onEnd}
       />
     </>
   )

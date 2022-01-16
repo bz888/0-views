@@ -49,7 +49,7 @@ function Video () {
   return (
     <>
       <h1>video component</h1>
-      <Stats id={vidId[index]} toggle={setToggle}/>
+      <Stats id={vidId[index]} setToggle={setToggle} toggle={toggle}/>
     </>
   )
 }
