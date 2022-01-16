@@ -11,12 +11,12 @@ import Stats from './Stats'
 
 function Video () {
   const [vidId, setVidId] = useState([])
-  // const [toggle, setToggle] = useState(true)
+  const [toggle, setToggle] = useState(true)
   const [index, setIndex] = useState('')
 
   useEffect(() => {
     search()
-  }, [])
+  }, [toggle])
 
   function search () {
     getYoutubeResult()
@@ -49,7 +49,7 @@ function Video () {
   return (
     <>
       <h1>video component</h1>
-      <Stats id={vidId[index]}/>
+      <Stats id={vidId[index]} toggle={setToggle}/>
     </>
   )
 }
