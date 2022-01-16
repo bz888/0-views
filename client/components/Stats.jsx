@@ -28,6 +28,7 @@ function Stats ({ id, toggle, setToggle }) {
       <button onClick={handleChange}>interact</button>  {/* testButton */}
 
       <YouTube
+        className='yt-player'
         videoId={id}
         opts={opts}
         onEnd={onEnd}
