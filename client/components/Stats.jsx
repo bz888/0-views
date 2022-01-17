@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import YouTube from 'react-youtube'
 
 function Stats ({ id, toggle, setToggle, minView }) {
+  const [player, setPlayer] = useState()
+  // const [currentId, setCurrentId] = useState()
+
   function onEnd () {
+    // if (id === currentId) {
     setToggle(!toggle)
+    // }da
+  }
+
+  function onReady (event) {
+    setPlayer(event.target)
+    // setCurrentId(id)
   }
   const opts = {
     height: '390',
@@ -26,6 +36,7 @@ function Stats ({ id, toggle, setToggle, minView }) {
         videoId={id}
         opts={opts}
         onEnd={onEnd}
+        onReady={onReady}
       />
     </>
   )
