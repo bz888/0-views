@@ -1,7 +1,7 @@
 import React from 'react'
 import YouTube from 'react-youtube'
 
-function Stats ({ id, toggle, setToggle }) {
+function Stats ({ id, toggle, setToggle, minView }) {
   function onEnd () {
     setToggle(!toggle)
   }
@@ -18,15 +18,9 @@ function Stats ({ id, toggle, setToggle }) {
   console.log('stats id: ', id)
   console.log('settoggle func', toggle)
 
-  function handleChange () {
-    console.log(1)
-  }
-
   return (
-
     <>
-      <button onClick={handleChange}>interact</button>  {/* testButton */}
-
+      <h1 className='viewCount'>View Count: {minView}</h1>
       <YouTube
         className='yt-player'
         videoId={id}

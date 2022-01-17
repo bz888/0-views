@@ -4,15 +4,11 @@ import { getStatistics, getYoutubeResult } from '../api'
 
 import Stats from './Stats'
 
-// create function that finds viewcount and returns if 0
-// find viewcount of video,
-// use the output as const result
-// else if, ping youtubeapi again but with different date
-
 function Video () {
   const [vidId, setVidId] = useState([])
   const [toggle, setToggle] = useState(true)
   const [index, setIndex] = useState('')
+  const [minView, setMinView] = useState('')
 
   useEffect(() => {
     search()
@@ -36,6 +32,7 @@ function Video () {
         console.log('viewArray: ', viewArray)
         const minViews = Math.min(...viewArray)
         console.log('minViews: ', minViews)
+        setMinView(minViews)
         const idx = viewArray.indexOf(minViews.toString())
         console.log('idx: ', idx)
         setIndex(idx)
@@ -48,7 +45,7 @@ function Video () {
 
   return (
     <>
-      <Stats id={vidId[index]} setToggle={setToggle} toggle={toggle}/>
+      <Stats id={vidId[index]} setToggle={setToggle} toggle={toggle} minView={minView}/>
     </>
   )
 }
