@@ -1,0 +1,12 @@
+.yt-player {
+  display: block;
+  margin: 0 auto;
+  border-style: none;
+}
+body{
+  background-color: black;
+}
+.viewCount{
+  color: white;
+  text-align: center;
+}
