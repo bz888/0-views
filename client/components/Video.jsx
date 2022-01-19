@@ -25,6 +25,8 @@ function Video () {
     return num
   }
 
+  // [djalsdj, qweqwlkejl, qwejkqejk ]
+  // [12, 31, 23]
   function search () {
     const randomTag = randomNum(500, 1)
     const tagNum = pad(randomTag, 4)
@@ -50,7 +52,7 @@ function Video () {
         const idx = viewArray.indexOf(minViews.toString())
         console.log('idx: ', idx)
         setIndex(idx)
-        return null
+        return minViews === 0 ? null : setToggle(!toggle)
       })
       .catch(err => console.error(err))
   }
