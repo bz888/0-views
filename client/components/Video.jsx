@@ -33,14 +33,14 @@ function Video () {
     console.log('DSC :', tagNum)
     getYoutubeResult(tagNum)
       .then((resultData) => {
-        console.log('result data: ', resultData)
+        // console.log('result data: ', resultData)
         const idArray = resultData.map(item => item.id.videoId)
-        console.log('idArray: ', idArray)
+        // console.log('idArray: ', idArray)
         setVidId(idArray)
         return idArray
       })
       .then((id) => {
-        console.log('ids', id)
+        // console.log('ids', id)
         return getStatistics(id)
       })
       .then((data) => {
@@ -50,14 +50,14 @@ function Video () {
         console.log('minViews: ', minViews)
         setMinView(minViews)
         const idx = viewArray.indexOf(minViews.toString())
-        console.log('idx: ', idx)
+        // console.log('idx: ', idx)
         setIndex(idx)
         return minViews === 0 ? null : setToggle(!toggle)
       })
       .catch(err => console.error(err))
   }
 
-  console.log('outside callback vidId: ', vidId[index])
+  // console.log('outside callback vidId: ', vidId[index])
 
   return (
     <>
