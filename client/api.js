@@ -1,9 +1,10 @@
 import request from 'superagent'
 
-export function getYoutubeResult () {
+export function getYoutubeResult (tag) {
   return request
-    .get('/api/v1/search/test/')
+    .get(`/api/v1/search/test/${tag}`)
     .then(response => {
+      console.log('getYoutubeResult: ', response.body.items)
       return response.body.items
     })
 }

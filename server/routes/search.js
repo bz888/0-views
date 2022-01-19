@@ -7,23 +7,26 @@ const moment = require('moment')
 
 // const apiKey = process.env.API_KEY
 const apiKey2 = process.env.API_KEY2
-const pastDate = moment().subtract(1, 'day').format()
+const pastDate = moment().subtract(7, 'days').format()
+// const tags = ['DSC 0001', 'DSC 0002']
 
 console.log('10mins ago: ', pastDate)
-// const stringDate = date.toISOString()
 
 // using googleapis
-router.get('/test', (req, res) => {
+router.get('/test/:tag', (req, res) => {
+  const tagNum = 'DSC ' + req.params.tag
+  console.log('from request tagNum: ', tagNum)
   google.youtube('v3').search.list({
     key: apiKey2,
     part: 'snippet',
     type: 'video',
+    q: tagNum,
     maxResults: 50,
-    publishedAfter: pastDate,
+    // publishedAfter: pastDate,
     order: 'date',
     videoEmbeddable: 'true',
-    videoDuration: 'short',
-    eventType: 'completed'
+    videoDuration: 'short'
+    // eventType: 'completed'
   }).then(response => {
     res.json(response.data)
     return null

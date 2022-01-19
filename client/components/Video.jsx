@@ -14,8 +14,22 @@ function Video () {
     search()
   }, [toggle])
 
+  function pad (num, size) {
+    let s = num + ''
+    while (s.length < size) s = '0' + s
+    return s
+  }
+
+  function randomNum (max, min) {
+    const num = Math.floor(Math.random() * (max - min) + min)
+    return num
+  }
+
   function search () {
-    getYoutubeResult()
+    const randomTag = randomNum(500, 1)
+    const tagNum = pad(randomTag, 4)
+    console.log('DSC :', tagNum)
+    getYoutubeResult(tagNum)
       .then((resultData) => {
         console.log('result data: ', resultData)
         const idArray = resultData.map(item => item.id.videoId)
