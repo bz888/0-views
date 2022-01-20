@@ -27,14 +27,17 @@ function Modal ({ handleClose, text }) {
   return (
     <Backdrop onClick={handleClose}>
       <motion.div
-        onClick={(e) => e.stopPropagation()}
+        // onClick={(e) => e.stopPropagation()}
         className='modal'
         variants={dropIn}
         initial='initial'
         animate='visble'
         exit='exit'
       >
-        <h3>{text}</h3>
+        <motion.button
+          className='button-30'
+          onClick={handleClose}
+          whileHover={{ scale: 3 }}>{text}</motion.button>
         {/* <button onClick={handleClose}>Begin</button> */}
       </motion.div>
     </Backdrop>
