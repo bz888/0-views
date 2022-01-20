@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import YouTube from 'react-youtube'
 
 function Stats ({ id, toggle, setToggle, minView }) {
   function onEnd () {
     setToggle(!toggle)
+    console.log('ping, reRender page')
   }
 
   const opts = {

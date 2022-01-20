@@ -3,14 +3,14 @@ const express = require('express')
 require('dotenv').config()
 const router = express.Router()
 const { google } = require('googleapis')
-const moment = require('moment')
+// const moment = require('moment')
 
 // const apiKey = process.env.API_KEY
 const apiKey2 = process.env.API_KEY2
-const pastDate = moment().subtract(7, 'days').format()
+// const pastDate = moment().subtract(7, 'days').format()
 // const tags = ['DSC 0001', 'DSC 0002']
 
-console.log('10mins ago: ', pastDate)
+// console.log('10mins ago: ', pastDate)
 
 // using googleapis
 router.get('/test/:tag', (req, res) => {
@@ -23,7 +23,7 @@ router.get('/test/:tag', (req, res) => {
     q: tagNum,
     maxResults: 50,
     // publishedAfter: pastDate,
-    order: 'date',
+    // order: 'any',
     videoEmbeddable: 'true',
     videoDuration: 'short'
     // eventType: 'completed'
@@ -37,7 +37,7 @@ router.get('/test/:tag', (req, res) => {
 
 router.get('/test/statistics/:id', (req, res) => {
   const testId = req.params.id
-  console.log('testID: ', testId)
+  // console.log('testID: ', testId)
   google.youtube('v3').videos.list({
     key: apiKey2,
     id: testId,
