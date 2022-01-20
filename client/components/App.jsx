@@ -1,8 +1,12 @@
 import React from 'react'
+import GetVid from './GetVid'
 
 function App () {
   return (
-    <h1>Hello world</h1>
+    <>
+      <GetVid/>
+
+    </>
   )
 }
 
