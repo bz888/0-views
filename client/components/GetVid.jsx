@@ -55,7 +55,6 @@ function GetVid () {
 
   return (
     <>
-
       <VideoPlayer id={vidId[index]} setToggle={setToggle} toggle={toggle} minView={minView}/>
     </>
   )

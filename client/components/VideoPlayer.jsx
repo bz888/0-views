@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
 import YouTube from 'react-youtube'
+import Modal from './Modal'
+import { AnimatePresence } from 'framer-motion'
 
 function VideoPlayer ({ id, toggle, setToggle, minView }) {
   const [player, setPlayer] = useState(null)
+  const [modalOpen, setModalOpen] = useState(true)
+  function close () {
+    setModalOpen(false)
+    player.playVideo()
+  }
 
   const opts = {
     height: '390',
@@ -18,10 +25,6 @@ function VideoPlayer ({ id, toggle, setToggle, minView }) {
     setPlayer(event.target)
   }
 
-  function handleClick () {
-    player.playVideo()
-    console.log(player.isMuted())
-  }
   function onPlay () {
     player.unMute()
   }
@@ -36,8 +39,13 @@ function VideoPlayer ({ id, toggle, setToggle, minView }) {
 
   return (
     <>
-      {/* <h1 className='viewCount'>View Count: {minView}</h1> */}
-      <button className='pageEntrance' onClick={handleClick}>Go</button>
+      <AnimatePresence
+        initial={false}
+        exitBeforeEnter={true}
+      >
+        {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} text={'begin'}/>}
+      </AnimatePresence>
+
       <div className='yt-player'>
         <YouTube
           videoId={id}
