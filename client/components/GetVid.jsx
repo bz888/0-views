@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 
 import { getStatistics, getYoutubeResult } from '../api'
 
-import Stats from './Stats'
+import VideoPlayer from './VideoPlayer'
 
-function Video () {
+function GetVid () {
   const [vidId, setVidId] = useState([])
   const [toggle, setToggle] = useState(true)
   const [index, setIndex] = useState('')
@@ -26,42 +26,39 @@ function Video () {
   }
 
   function search () {
-    const randomTag = randomNum(500, 1)
+    const randomTag = randomNum(800, 1)
     const tagNum = pad(randomTag, 4)
-    console.log('DSC :', tagNum)
-    getYoutubeResult(tagNum)
+    const tagName = ['DSC ', 'MOV ', 'IMG ']
+    const idxName = randomNum(2, 0)
+    const searchTag = tagName[idxName] + tagNum
+
+    getYoutubeResult(searchTag)
       .then((resultData) => {
-        // console.log('result data: ', resultData)
         const idArray = resultData.map(item => item.id.videoId)
-        // console.log('idArray: ', idArray)
         setVidId(idArray)
         return idArray
       })
       .then((id) => {
-        // console.log('ids', id)
         return getStatistics(id)
       })
       .then((data) => {
         const viewArray = data.items.map(ele => ele.statistics.viewCount)
-        console.log('viewArray: ', viewArray)
         const minViews = Math.min(...viewArray)
-        console.log('minViews: ', minViews)
         setMinView(minViews)
         const idx = viewArray.indexOf(minViews.toString())
-        // console.log('idx: ', idx)
         setIndex(idx)
         return minViews === 0 ? null : setToggle(!toggle)
       })
       .catch(err => console.error(err))
   }
-
   // console.log('outside callback vidId: ', vidId[index])
 
   return (
     <>
-      <Stats id={vidId[index]} setToggle={setToggle} toggle={toggle} minView={minView}/>
+
+      <VideoPlayer id={vidId[index]} setToggle={setToggle} toggle={toggle} minView={minView}/>
     </>
   )
 }
 
-export default Video
+export default GetVid

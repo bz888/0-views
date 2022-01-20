@@ -1,10 +1,10 @@
 import React from 'react'
-import Video from './Video'
+import GetVid from './GetVid'
 
 function App () {
   return (
     <>
-      <Video/>
+      <GetVid/>
     </>
   )
 }
