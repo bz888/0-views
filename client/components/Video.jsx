@@ -25,8 +25,6 @@ function Video () {
     return num
   }
 
-  // [djalsdj, qweqwlkejl, qwejkqejk ]
-  // [12, 31, 23]
   function search () {
     const randomTag = randomNum(500, 1)
     const tagNum = pad(randomTag, 4)
