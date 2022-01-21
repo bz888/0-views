@@ -6,7 +6,8 @@ function LoadAnim () {
     width: '2rem',
     height: '2rem',
     display: 'flex',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    margin: 'auto'
   }
   const loadCircle = {
     display: 'block',
@@ -49,7 +50,6 @@ function LoadAnim () {
       variants={loadingContainerVariants}
       initial='start'
       animate='end'
-      className='loadAnim'
     >
       <motion.span
         style={loadCircle}

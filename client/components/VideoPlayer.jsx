@@ -32,8 +32,8 @@ function VideoPlayer ({ id, toggle, setToggle, minView }) {
   }
   function onReady (event) {
     setPlayer(event.target)
-    // setModalOpen(true)
-    setTimeout(setLoading(false), 10000)
+    setTimeout(() => { setLoading(false) }, 5000)
+    // setLoading(false)
     console.log('video ready', loading)
   }
 
@@ -50,7 +50,7 @@ function VideoPlayer ({ id, toggle, setToggle, minView }) {
     <>
       <AnimatePresence
         initial={true}
-        exitBeforeEnter={true}
+        exitBeforeEnter={false}
       >
         {
           modalOpen && <Modal modalOpen={modalOpen} handleClose={close} text={'begin'} load={loading}/>
