@@ -3,26 +3,38 @@ import YouTube from 'react-youtube'
 import Modal from './Modal'
 import { AnimatePresence } from 'framer-motion'
 
+// import useWindowDimensions from './useWindow'
+
 function VideoPlayer ({ id, toggle, setToggle, minView }) {
+  // const { height, width } = useWindowDimensions
+
+  const stringHeight = window.innerHeight.toString()
+  const stringWidth = window.innerWidth.toString()
   const [player, setPlayer] = useState(null)
   const [modalOpen, setModalOpen] = useState(true)
+  const [loading, setLoading] = useState(true)
   function close () {
     setModalOpen(false)
     player.playVideo()
+    player.requestFullscreen()
   }
 
   const opts = {
-    height: '390',
-    width: '640',
+    height: stringHeight,
+    width: stringWidth,
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
       controls: 0,
-      mute: 1
+      mute: 1,
+      enablejspai: 1
     }
   }
   function onReady (event) {
     setPlayer(event.target)
+    // setModalOpen(true)
+    setTimeout(setLoading(false), 10000)
+    console.log('video ready', loading)
   }
 
   function onPlay () {
@@ -34,16 +46,15 @@ function VideoPlayer ({ id, toggle, setToggle, minView }) {
     console.log('ping, reRender page')
   }
 
-  console.log('stats id: ', id)
-  console.log('settoggle func', toggle)
-
   return (
     <>
       <AnimatePresence
-        initial={false}
+        initial={true}
         exitBeforeEnter={true}
       >
-        {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} text={'begin'}/>}
+        {
+          modalOpen && <Modal modalOpen={modalOpen} handleClose={close} text={'begin'} load={loading}/>
+        }
       </AnimatePresence>
 
       <div className='yt-player'>

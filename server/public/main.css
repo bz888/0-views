@@ -39,6 +39,16 @@ body{
   flex-direction: column;
   align-items: center;
 }
+.loadAnim{
+  width: clamp(50%, 700px, 90%);
+  height: (50%, 300px);
+
+  margin: auto;
+  pad: 0 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
 h3{
   position: relative;
