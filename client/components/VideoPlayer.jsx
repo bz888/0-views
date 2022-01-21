@@ -3,11 +3,7 @@ import YouTube from 'react-youtube'
 import Modal from './Modal'
 import { AnimatePresence } from 'framer-motion'
 
-// import useWindowDimensions from './useWindow'
-
-function VideoPlayer ({ id, toggle, setToggle, minView }) {
-  // const { height, width } = useWindowDimensions
-
+function VideoPlayer ({ id, toggle, setToggle }) {
   const stringHeight = window.innerHeight.toString()
   const stringWidth = window.innerWidth.toString()
   const [player, setPlayer] = useState(null)
@@ -16,7 +12,6 @@ function VideoPlayer ({ id, toggle, setToggle, minView }) {
   function close () {
     setModalOpen(false)
     player.playVideo()
-    player.requestFullscreen()
   }
 
   const opts = {
@@ -32,9 +27,7 @@ function VideoPlayer ({ id, toggle, setToggle, minView }) {
   }
   function onReady (event) {
     setPlayer(event.target)
-    setTimeout(() => { setLoading(false) }, 5000)
-    // setLoading(false)
-    console.log('video ready', loading)
+    setTimeout(() => { setLoading(false) }, 3000)
   }
 
   function onPlay () {
@@ -43,14 +36,13 @@ function VideoPlayer ({ id, toggle, setToggle, minView }) {
 
   function onEnd () {
     setToggle(!toggle)
-    console.log('ping, reRender page')
   }
 
   return (
     <>
       <AnimatePresence
         initial={true}
-        exitBeforeEnter={false}
+        exitBeforeEnter={true}
       >
         {
           modalOpen && <Modal modalOpen={modalOpen} handleClose={close} text={'begin'} load={loading}/>

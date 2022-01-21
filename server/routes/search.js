@@ -9,14 +9,12 @@ const apiKey = process.env.API_KEY
 // using googleapis
 router.get('/test/:tag', (req, res) => {
   const tagNum = req.params.tag
-  console.log('from request tagNum: ', tagNum)
   google.youtube('v3').search.list({
     key: apiKey,
     part: 'snippet',
     type: 'video',
     q: tagNum,
     maxResults: 50,
-    // publishedAfter: pastDate,
     videoEmbeddable: 'true',
     videoDuration: 'short'
   }).then(response => {

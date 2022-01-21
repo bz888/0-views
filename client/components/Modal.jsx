@@ -25,6 +25,7 @@ function Modal ({ handleClose, text, load }) {
       opacity: 0
     }
   }
+
   return (
     <Backdrop onClick={handleClose}>
       {
@@ -42,7 +43,6 @@ function Modal ({ handleClose, text, load }) {
               onClick={handleClose}
               whileHover={{ scale: 1.5 }}>{text}</motion.button>
           </motion.div>
-
       }
 
     </Backdrop>

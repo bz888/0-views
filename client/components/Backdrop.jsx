@@ -1,5 +1,4 @@
 import React from 'react'
-// import { stateLogger } from '../../stateLogger'
 import { motion } from 'framer-motion'
 
 const Backdrop = ({ children }) => {
