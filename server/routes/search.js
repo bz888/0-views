@@ -16,7 +16,7 @@ router.get('/test/:tag', (req, res) => {
     q: tagNum,
     maxResults: 50,
     videoEmbeddable: 'true',
-    videoDuration: 'short'
+    videoDuration: 'medium'
   }).then(response => {
     res.json(response.data)
     return null

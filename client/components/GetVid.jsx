@@ -35,6 +35,7 @@ function GetVid () {
     getYoutubeResult(searchTag)
       .then((resultData) => {
         const idArray = resultData.map(item => item.id.videoId)
+        console.log(idArray)
         setVidId(idArray)
         return idArray
       })
@@ -46,6 +47,8 @@ function GetVid () {
         const minViews = Math.min(...viewArray)
         setMinView(minViews)
         const idx = viewArray.indexOf(minViews.toString())
+        console.log(viewArray)
+        console.log(minViews)
         setIndex(idx)
         return minViews === 0 ? null : setToggle(!toggle)
       })
