@@ -4,6 +4,7 @@ export function getYoutubeResult (tag) {
   return request
     .get(`/api/v1/search/test/${tag}`)
     .then(response => {
+      // console.log(response.body)
       return response.body.items
     })
 }

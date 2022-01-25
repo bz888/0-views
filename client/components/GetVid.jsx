@@ -25,6 +25,24 @@ function GetVid () {
     return num
   }
 
+  function generateParams () {
+    const randomTag = randomNum(800, 1)
+    const tagNum = pad(randomTag, 4)
+    const tagName = ['DSC ', 'MOV ', 'IMG ']
+    const idxName = randomNum(2, 0)
+    const searchTag = tagName[idxName] + tagNum
+
+    const durationArr = ['short', 'medium', 'long']
+    const searchDuration = durationArr[idxName]
+
+    const searchObj = {
+      tag: searchTag,
+      duration: searchDuration
+    }
+    // console.log('generateParams: ', searchObj)
+    return searchObj
+  }
+
   function search () {
     const randomTag = randomNum(800, 1)
     const tagNum = pad(randomTag, 4)
@@ -32,9 +50,12 @@ function GetVid () {
     const idxName = randomNum(2, 0)
     const searchTag = tagName[idxName] + tagNum
 
+    console.log('generatedParams from search function: ', generateParams())
+
     getYoutubeResult(searchTag)
       .then((resultData) => {
         const idArray = resultData.map(item => item.id.videoId)
+        console.log('idArray: ', idArray)
         setVidId(idArray)
         return idArray
       })
@@ -43,6 +64,10 @@ function GetVid () {
       })
       .then((data) => {
         const viewArray = data.items.map(ele => ele.statistics.viewCount)
+
+        const vidStats = data.items.map(ele => ele.statistics)
+        console.log('vidStats: ', vidStats)
+
         const minViews = Math.min(...viewArray)
         setMinView(minViews)
         const idx = viewArray.indexOf(minViews.toString())
