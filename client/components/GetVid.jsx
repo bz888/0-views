@@ -25,12 +25,39 @@ function GetVid () {
     return num
   }
 
+  // function generateSearchParams () {
+  //   const randomTag = randomNum(800, 1)
+  //   const tagNum = pad(randomTag, 4)
+  //   const tagName = ['DSC ', 'MOV ', 'IMG ']
+  //   const idxName = randomNum(2, 0)
+  //   const searchTag = tagName[idxName] + tagNum
+
+  //   const lengthArr = ['short', 'medium', 'long']
+
+  //   const searchLength = lengthArr[idxName]
+
+  //   const searchObj = {
+  //     tag: searchTag,
+  //     length: searchLength
+  //   }
+  //   console.log('generateParams', searchObj)
+  //   return searchObj
+  // }
+
   function search () {
     const randomTag = randomNum(800, 1)
     const tagNum = pad(randomTag, 4)
     const tagName = ['DSC ', 'MOV ', 'IMG ']
     const idxName = randomNum(2, 0)
     const searchTag = tagName[idxName] + tagNum
+
+    const lengthArr = ['short', 'medium', 'long']
+
+    const searchLength = lengthArr[idxName]
+    const searchObj = {
+      tag: searchTag,
+      length: searchLength
+    }
 
     getYoutubeResult(searchTag)
       .then((resultData) => {
