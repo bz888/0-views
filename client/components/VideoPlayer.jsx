@@ -27,7 +27,7 @@ function VideoPlayer ({ id, toggle, setToggle }) {
   }
   function onReady (event) {
     setPlayer(event.target)
-    setTimeout(() => { setLoading(false) }, 3000)
+    setTimeout(() => { setLoading(false) }, 4000)
   }
 
   function onPlay () {

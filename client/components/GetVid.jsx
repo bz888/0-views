@@ -44,15 +44,15 @@ function GetVid () {
   }
 
   function search () {
-    const randomTag = randomNum(800, 1)
-    const tagNum = pad(randomTag, 4)
-    const tagName = ['DSC ', 'MOV ', 'IMG ']
-    const idxName = randomNum(2, 0)
-    const searchTag = tagName[idxName] + tagNum
+    // const randomTag = randomNum(800, 1)
+    // const tagNum = pad(randomTag, 4)
+    // const tagName = ['DSC ', 'MOV ', 'IMG ']
+    // const idxName = randomNum(2, 0)
+    // const searchTag = tagName[idxName] + tagNum
 
     console.log('generatedParams from search function: ', generateParams())
-
-    getYoutubeResult(searchTag)
+    const searchParam = generateParams()
+    getYoutubeResult(searchParam)
       .then((resultData) => {
         const idArray = resultData.map(item => item.id.videoId)
         console.log('idArray: ', idArray)

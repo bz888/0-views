@@ -12,9 +12,9 @@ const apiKey = process.env.API_KEY
 // }
 
 // using googleapis
-router.get('/test/:tag', (req, res) => {
+router.get('/test/:tag/:duration', (req, res) => {
   const tagNum = req.params.tag
-  // const durationParam = req.params.duration
+  const durationParam = req.params.duration
 
   // const randomDuration = randomNum(1, 0)
   // const durationArr = ['short', 'medium']
@@ -22,6 +22,7 @@ router.get('/test/:tag', (req, res) => {
   // console.log('duration Param, search.js: ', durationParam)
 
   const date = new Date()
+
   console.log('req.params', date, req.params)
 
   google.youtube('v3').search.list({
@@ -31,7 +32,7 @@ router.get('/test/:tag', (req, res) => {
     q: tagNum,
     maxResults: 50,
     videoEmbeddable: 'true',
-    videoDuration: 'medium'
+    videoDuration: durationParam
   }).then(response => {
     // console.log('response data, search.js: ', response.data)
     res.json(response.data)
