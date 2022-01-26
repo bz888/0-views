@@ -3,26 +3,31 @@ import YouTube from 'react-youtube'
 import Modal from './Modal'
 import { AnimatePresence } from 'framer-motion'
 
-function VideoPlayer ({ id, toggle, setToggle, minView }) {
+function VideoPlayer ({ id, toggle, setToggle }) {
+  const stringHeight = window.innerHeight.toString()
+  const stringWidth = window.innerWidth.toString()
   const [player, setPlayer] = useState(null)
   const [modalOpen, setModalOpen] = useState(true)
+  const [loading, setLoading] = useState(true)
   function close () {
     setModalOpen(false)
     player.playVideo()
   }
 
   const opts = {
-    height: '390',
-    width: '640',
+    height: stringHeight,
+    width: stringWidth,
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
       controls: 0,
-      mute: 1
+      mute: 1,
+      enablejspai: 1
     }
   }
   function onReady (event) {
     setPlayer(event.target)
+    setTimeout(() => { setLoading(false) }, 3000)
   }
 
   function onPlay () {
@@ -31,19 +36,17 @@ function VideoPlayer ({ id, toggle, setToggle, minView }) {
 
   function onEnd () {
     setToggle(!toggle)
-    console.log('ping, reRender page')
   }
-
-  console.log('stats id: ', id)
-  console.log('settoggle func', toggle)
 
   return (
     <>
       <AnimatePresence
-        initial={false}
+        initial={true}
         exitBeforeEnter={true}
       >
-        {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} text={'begin'}/>}
+        {
+          modalOpen && <Modal modalOpen={modalOpen} handleClose={close} text={'begin'} load={loading}/>
+        }
       </AnimatePresence>
 
       <div className='yt-player'>

@@ -51,7 +51,6 @@ function GetVid () {
       })
       .catch(err => console.error(err))
   }
-  // console.log('outside callback vidId: ', vidId[index])
 
   return (
     <>
