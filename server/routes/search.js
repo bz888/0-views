@@ -5,13 +5,24 @@ const { google } = require('googleapis')
 
 const apiKey = process.env.API_KEY
 const apiKey2 = process.env.API_KEY2
-const apiArr = [apiKey, apiKey2]
+const apiKey3 = process.env.API_KEY3
+const apiArr = [apiKey, apiKey2, apiKey3]
 
 let keyIdx = 0
 
 // using googleapis
 router.get('/test/:tag', (req, res) => {
   const tagNum = req.params.tag
+  function toggleDuration (tag) {
+    const splitArr = tag.split(' ')
+    const int = parseInt(splitArr[1])
+    if (int >= 200) {
+      return 'short'
+    } else {
+      return 'medium'
+    }
+  }
+  const durationParam = toggleDuration(tagNum)
 
   const useKey = apiArr[keyIdx]
 
@@ -22,7 +33,7 @@ router.get('/test/:tag', (req, res) => {
     q: tagNum,
     maxResults: 50,
     videoEmbeddable: 'true',
-    videoDuration: 'short'
+    videoDuration: durationParam
   }).then(response => {
     res.json(response.data)
     console.log('useKey accepted: ', useKey)
