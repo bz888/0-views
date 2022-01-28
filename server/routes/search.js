@@ -39,7 +39,7 @@ router.get('/test/:tag', (req, res) => {
     console.log('useKey accepted: ', useKey)
     return null
   }).catch(err => {
-    console.log('you fucked up bad : ', err.message)
+    // console.log('you fucked up bad : ', err.message)
     keyIdx++
     console.log('keyidx: ', keyIdx)
     console.log('useKey: ', useKey)
