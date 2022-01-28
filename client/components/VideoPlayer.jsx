@@ -9,6 +9,9 @@ function VideoPlayer ({ id, toggle, setToggle }) {
   const [player, setPlayer] = useState(null)
   const [modalOpen, setModalOpen] = useState(true)
   const [loading, setLoading] = useState(true)
+
+  const [retryAttempts, setRetryAttempt] = useState(0)
+
   function close () {
     setModalOpen(false)
     player.playVideo()
@@ -32,10 +35,25 @@ function VideoPlayer ({ id, toggle, setToggle }) {
 
   function onPlay () {
     player.unMute()
+    setRetryAttempt(0)
   }
 
   function onEnd () {
     setToggle(!toggle)
+  }
+
+  function onError (maxRetry, delay) {
+    if (retryAttempts <= maxRetry) {
+      console.log('error, looking for a new video')
+      setTimeout(() => {
+        setToggle(!toggle)
+      }, delay)
+
+      setRetryAttempt(retryAttempts + 1)
+      console.log('retryAttempt: ', retryAttempts)
+    } else {
+      console.log('max tries attempted')
+    }
   }
 
   return (
@@ -51,11 +69,12 @@ function VideoPlayer ({ id, toggle, setToggle }) {
 
       <div className='yt-player'>
         <YouTube
-          videoId={id}
+          videoId={id + 'mal'}
           opts={opts}
           onEnd={onEnd}
           onPlay={onPlay}
           onReady={onReady}
+          onError={onError(1, 5000)}
         />
       </div>
     </>

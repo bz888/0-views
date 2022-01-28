@@ -3,9 +3,11 @@ require('dotenv').config()
 const router = express.Router()
 const { google } = require('googleapis')
 
+// keys
 const apiKey = process.env.API_KEY
 const apiKey2 = process.env.API_KEY2
 const apiKey3 = process.env.API_KEY3
+
 const apiArr = [apiKey, apiKey2, apiKey3]
 
 let keyIdx = 0
