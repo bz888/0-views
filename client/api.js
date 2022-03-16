@@ -6,6 +6,9 @@ export function getYoutubeResult (tag) {
     .then(response => {
       return response.body.items
     })
+    .catch((err) => {
+      console.error('GET REQUEST yt Results: ', err.mesage, 'AT tag: ', tag)
+    })
 }
 export function getStatistics (id) {
   return request
