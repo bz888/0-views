@@ -38,10 +38,20 @@ function Modal ({ handleClose, text, load }) {
             animate='visble'
             exit='exit'
           >
-            <motion.button
-              className='button-30'
+            <motion.h1
+              className='h1-title'
               onClick={handleClose}
-              whileHover={{ scale: 1.5 }}>{text}</motion.button>
+            >
+              {text}
+            </motion.h1>
+            <motion.p className='p-title'>
+              William Linscott <br></br>
+              Coding: Qianye Lin, Ben Zhao <br></br>
+              <br></br>
+              N.B. After New Media contains previously unwatched videos<br></br>
+              from YouTube. Please note they are randomised and unfiltered<br></br>
+              so watch at your own discretion.
+            </motion.p>
           </motion.div>
       }
 
