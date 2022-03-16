@@ -2,15 +2,18 @@ import React, { useState } from 'react'
 import YouTube from 'react-youtube'
 import Modal from './Modal'
 import { AnimatePresence } from 'framer-motion'
+import { useToggle } from '../context/toggleContext'
 
-function VideoPlayer ({ id, toggle, setToggle }) {
+function VideoPlayer ({ id, toggle, setToggle, minView }) {
   const stringHeight = window.innerHeight.toString()
   const stringWidth = window.innerWidth.toString()
   const [player, setPlayer] = useState(null)
   const [modalOpen, setModalOpen] = useState(true)
   const [loading, setLoading] = useState(true)
+  const { playerToggle, setPlayerToggle } = useToggle()
   function close () {
     setModalOpen(false)
+    setPlayerToggle(true)
     player.playVideo()
   }
 
@@ -27,7 +30,8 @@ function VideoPlayer ({ id, toggle, setToggle }) {
   }
   function onReady (event) {
     setPlayer(event.target)
-    // player.pauseVideo()
+    console.log('initial log player: ', player)
+    event.target.stopVideo()
     setTimeout(() => { setLoading(false) }, 3000)
   }
 
@@ -37,9 +41,11 @@ function VideoPlayer ({ id, toggle, setToggle }) {
 
   function onEnd () {
     setToggle(!toggle)
+    console.log('onEnd ', 'minView: ', minView, 'video id: ', id)
   }
   function onError () {
     setToggle(!toggle)
+    console.log('onError ', 'minView: ', minView, 'video id: ', id)
   }
 
   return (
@@ -59,7 +65,7 @@ function VideoPlayer ({ id, toggle, setToggle }) {
           opts={opts}
           onEnd={onEnd}
           onPlay={onPlay}
-          onReady={onReady}
+          onReady={playerToggle ? (event) => { setPlayer(() => event.target) } : onReady}
           onError={onError}
         />
       </div>
