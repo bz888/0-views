@@ -9,6 +9,7 @@ body{
   margin: 0px;
   padding: 0px;
   overflow: hidden;
+  /* font-family: ; */
 }
 
 .backdrop{
@@ -17,25 +18,41 @@ body{
   left: 0;
   height: 100vh;
   width: 100vw;
-  background-color: white;
+  background-color: rgb(180, 180, 180);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
 }
 .modal{
   width: clamp(50%, 700px, 90%);
   height: (50%, 300px);
-
-  margin: auto;
+  margin-top: 50px;
+  margin-left: 50px;
+  /* margin: auto; */
   pad: 0 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
+}
+.h1-title {
+  font-size: 1.2rem;
+  margin: 0;
+  text-decoration-line: underline;
+  text-underline-offset: 5px;
+  text-decoration-style: dotted;
+  font-family: 'Roboto', sans-serif;
+}
+.h1-title:hover {
+  cursor: pointer;
+}
+.p-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
 }
 
 
 /* CSS */
-.button-30 {
+/* .button-30 {
   align-items: center;
   appearance: none;
   background-color: #FCFCFD;
@@ -64,9 +81,9 @@ body{
   white-space: nowrap;
   will-change: box-shadow,transform;
   font-size: 18px;
-}
+} */
 
-.button-30:focus {
+/* .button-30:focus {
   box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
 }
 
@@ -78,4 +95,4 @@ body{
 .button-30:active {
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
-}
+} */

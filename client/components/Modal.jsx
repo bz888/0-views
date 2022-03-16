@@ -29,20 +29,33 @@ function Modal ({ handleClose, text, load }) {
   return (
     <Backdrop onClick={handleClose}>
       {
-        load
-          ? <LoadAnim/>
-          : <motion.div
-            className='modal'
-            variants={dropIn}
-            initial='initial'
-            animate='visble'
-            exit='exit'
+        // load
+        // ? <LoadAnim/>
+        // :
+        <motion.div
+          className='modal'
+          variants={dropIn}
+          initial='initial'
+          animate='visble'
+          exit='exit'
+        >
+          <motion.h1
+            // className='button-30'
+            className='h1-title'
+            onClick={handleClose}
+            // whileHover={{ scale: 1.5 }}
           >
-            <motion.button
-              className='button-30'
-              onClick={handleClose}
-              whileHover={{ scale: 1.5 }}>{text}</motion.button>
-          </motion.div>
+            {text}
+          </motion.h1>
+          <motion.p className='p-title'>
+              William Linscott <br></br>
+              Coding: Qianye Lin, Ben Zhao <br></br>
+            <br></br>
+              N.B. After New Media contains previously unwatched videos<br></br>
+              from YouTube. Please note they are randomised and unfiltered<br></br>
+              so watch at your own discretion.
+          </motion.p>
+        </motion.div>
       }
 
     </Backdrop>

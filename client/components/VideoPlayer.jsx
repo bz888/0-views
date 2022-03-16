@@ -20,13 +20,14 @@ function VideoPlayer ({ id, toggle, setToggle }) {
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
-      controls: 0,
+      controls: 1,
       mute: 1,
       enablejspai: 1
     }
   }
   function onReady (event) {
     setPlayer(event.target)
+    // player.pauseVideo()
     setTimeout(() => { setLoading(false) }, 3000)
   }
 
@@ -37,6 +38,9 @@ function VideoPlayer ({ id, toggle, setToggle }) {
   function onEnd () {
     setToggle(!toggle)
   }
+  function onError () {
+    setToggle(!toggle)
+  }
 
   return (
     <>
@@ -45,7 +49,7 @@ function VideoPlayer ({ id, toggle, setToggle }) {
         exitBeforeEnter={true}
       >
         {
-          modalOpen && <Modal modalOpen={modalOpen} handleClose={close} text={'begin'} load={loading}/>
+          modalOpen && <Modal modalOpen={modalOpen} handleClose={close} text={'After New Media'} load={loading}/>
         }
       </AnimatePresence>
 
@@ -56,6 +60,7 @@ function VideoPlayer ({ id, toggle, setToggle }) {
           onEnd={onEnd}
           onPlay={onPlay}
           onReady={onReady}
+          onError={onError}
         />
       </div>
     </>
