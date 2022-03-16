@@ -30,7 +30,7 @@ function VideoPlayer ({ id, toggle, setToggle, minView }) {
   }
   function onReady (event) {
     setPlayer(event.target)
-    console.log('initial log player: ', player)
+    // console.log('initial log player: ', player)
     event.target.stopVideo()
     setTimeout(() => { setLoading(false) }, 3000)
   }
@@ -41,11 +41,11 @@ function VideoPlayer ({ id, toggle, setToggle, minView }) {
 
   function onEnd () {
     setToggle(!toggle)
-    console.log('onEnd ', 'minView: ', minView, 'video id: ', id)
+    // console.log('onEnd ', 'minView: ', minView, 'video id: ', id)
   }
   function onError () {
     setToggle(!toggle)
-    console.log('onError ', 'minView: ', minView, 'video id: ', id)
+    // console.log('onError ', 'minView: ', minView, 'video id: ', id)
   }
 
   return (

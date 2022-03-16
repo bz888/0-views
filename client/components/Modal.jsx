@@ -39,10 +39,8 @@ function Modal ({ handleClose, text, load }) {
             exit='exit'
           >
             <motion.h1
-            // className='button-30'
               className='h1-title'
               onClick={handleClose}
-            // whileHover={{ scale: 1.5 }}
             >
               {text}
             </motion.h1>

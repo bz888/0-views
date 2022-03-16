@@ -9,7 +9,7 @@ const apiKey = process.env.API_KEY2
 // using googleapis
 router.get('/test/:tag', (req, res) => {
   const tagNum = req.params.tag
-  console.log('TAG NUM', tagNum)
+  // console.log('TAG NUM', tagNum)
   google.youtube('v3').search.list({
     key: apiKey,
     part: 'snippet',

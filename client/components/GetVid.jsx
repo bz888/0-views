@@ -31,7 +31,7 @@ function GetVid () {
     const tagName = ['DSC ', 'MOV ', 'IMG ']
     const idxName = randomNum(2, 0)
     const searchTag = tagName[idxName] + tagNum
-    console.log('searchTag: ', searchTag)
+    // console.log('searchTag: ', searchTag)
 
     getYoutubeResult(searchTag)
       .then((resultData) => {
