@@ -9,7 +9,17 @@ const apiKey = process.env.API_KEY2
 // using googleapis
 router.get('/test/:tag', (req, res) => {
   const tagNum = req.params.tag
-  // console.log('TAG NUM', tagNum)
+  function toggleDuration (tag) {
+    const splitArr = tag.split(' ')
+    const int = parseInt(splitArr[1])
+    if (int >= 400) {
+      return 'short'
+    } else {
+      return 'medium'
+    }
+  }
+  const durationParam = toggleDuration(tagNum)
+
   google.youtube('v3').search.list({
     key: apiKey,
     part: 'snippet',
@@ -17,7 +27,7 @@ router.get('/test/:tag', (req, res) => {
     q: tagNum,
     maxResults: 50,
     videoEmbeddable: 'true',
-    videoDuration: 'short'
+    videoDuration: durationParam
   }).then(response => {
     res.json(response.data)
     return null
