@@ -23,7 +23,7 @@ function VideoPlayer ({ id, toggle, setToggle, minView }) {
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
-      controls: 1,
+      controls: 0,
       mute: 1,
       enablejspai: 1
     }
